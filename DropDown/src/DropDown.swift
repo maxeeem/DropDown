@@ -96,6 +96,10 @@ public final class DropDown: UIView {
 	*/
 	public var direction = Direction.any
 
+    /// Maximum number of rows to show
+    /// Default is 0, no limit
+    public var maxRowCount = 0
+    
 	/**
 	The offset point relative to `anchorView` when the drop down is shown above the anchor view.
 
@@ -879,7 +883,7 @@ extension DropDown {
 
 	/// Returns the height needed to display all cells.
 	fileprivate var tableHeight: CGFloat {
-		return tableView.rowHeight * CGFloat(dataSource.count)
+		return tableView.rowHeight * CGFloat(min(dataSource.count, maxRowCount))
 	}
 
 }
